@@ -1,0 +1,42 @@
+*   {font-family: Arial, 
+    sans-serif; font-size: 14px; 
+    font-weight:normal; font-style:normal; 
+    padding:0; 
+    margin:0; 
+    box-sizing: border-box;
+}
+
+body{
+    background-color: gray;
+}
+
+
+.navbar {
+    display: flex;
+    padding: 50px 50%;
+    background-color: black;
+    color: white;
+    width: 200px;
+    border-bottom: 5px solid black;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+
+}
+
+.topic {
+    flex: 1;
+    background-color: yellow;
+}
+.pub {
+    flex: 1;
+}
+.contenue {
+    flex: 1;
+}

@@ -1,0 +1,238 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/css/buttonTopMenu.css">
+        <link rel="stylesheet" href="/static/css/commentInputMenu.css">
+        <link rel="stylesheet" href="/static/css/commentListMenu.css">
+        <link rel="stylesheet" href="/static/css/forumMenu.css">
+        <link rel="stylesheet" href="/static/css/topicListMenu.css">
+        <link rel="stylesheet" href="/static/css/topicOpenMenu.css">
+        <link rel="stylesheet" href="/static/css/txt.css">
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <title>My titile test</title>
+
+</head>
+
+<body>
+    
+    <div class="bigContainer">
+        <div class="topContainer">
+            <!-- <p>topContainer</p> -->
+            <div class="topLeft">
+
+               
+
+                <ul class="liste">
+                <a href="/static/html/pagePost.html" class="btn">Creation Post</a>
+
+                </ul>
+            </div>
+            <div class="topRight">
+
+                {{$ty := index .Tests 0}}
+            {{range $ta := .Utilisateurs}}
+
+                {{if eq $ty.NotConnect 1}}
+                <a href="/static/html/pageConnect.html" class="ButtonCONNECT">Profile</a>
+                {{else}}
+                {{if eq $ta.Id_utilisateur $ty.IdConnect }}
+                <p>Connecter en tend que {{$ta.Nom_utilisateur}}</p>
+                {{end}}
+                {{end}}
+                {{end}}
+
+            </div>
+        </div>
+        <div class="mainContainer">
+
+        <div class="mainLeft">
+                   
+            <div class="accordion">
+                <form action="/" method="POST">
+                    
+                        {{range .Topics}}
+                        <li id="listtopic">
+                            <button value="{{.Id_topic}}" name="topicOpen" class="ok">
+                                <input type="radio" name="accordion" id="{{.Id_topic}}">
+                                <label for="{{.Id_topic}}">{{.Titre_topic }}</label>
+                                <div class="content">
+                                    {{if .Multimedia_topic}}
+
+                                        {{ if eq .Imgtchek_topic 1}}
+
+
+                                        <img src="{{.MiniatureYt_topic}}" alt="testimgnm" width="400" height="250" >
+                                        {{ else if eq .Imgtchek_topic -1}}
+                                        <img src="{{.Multimedia_topic}}" alt="testimgnm" width="400" height="250" >
+                                        {{end}}
+                                        {{end}}
+                                        <p>{{.Contenu_topic}}</p>
+                                </div>
+                            </button>
+                        </li>
+                        {{end}}
+                
+                </form>
+            </div>
+            
+          
+            
+     
+
+        </div>
+        {{$test := index .Tests 0}}  
+                 
+                    <!-- <img src="/static/photos/icectulu.jpg" alt="testimgnm" width="500" height="350" > dans le p -->
+            <div class="mainRight">
+
+                <div class="mainMiniTop">
+
+   
+                 
+            
+       
+                
+
+                    {{range $topic := .Topics}}
+
+                    
+       
+                    {{if eq $topic.Id_topic $test.TopicToOpen }}
+                    <div class="headTop">
+                        {{ if eq $topic.Imgtchek_topic 1}}
+                        <iframe width="560" class="multimedia" height="315" src="{{$topic.Multimedia_topic}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                       
+                        {{ else if eq $topic.Imgtchek_topic -1}}
+                        <img src="{{$topic.Multimedia_topic}}" alt="testImg" width="500" height="350" />
+                        {{else}}
+                        {{end}}
+                    </div>
+                    <div class="headBot">
+                        <div class="headBot">
+                            <p>{{$topic.Contenu_topic}}</p>
+                          </div>
+                    
+                    </div>
+                    {{end}}
+                    {{end}}
+                 
+                    
+                </div>  
+              
+                <div class="mainMiniBot">
+
+                    {{if eq $test.TopicToOpen 999 }}
+
+                    {{else}}
+                 
+                    <div class="commentBoxTop">
+                        <form action="/" method="POST" onsubmit="" >
+                        <textarea id="inputBox"  name="newcomment" rows="4" placeholder="Donnez votre avis!" ></textarea>
+                        <input type="hidden" name="commentData" value="{{$test.TopicToOpen}}" />
+                        <input type="submit" value ='send' class="inputBoxSendBtn"/>     
+                    </div>
+                    </form>
+                    {{end}}
+
+
+                    <div id="commentBoxBot">
+
+                        
+
+                        
+
+        {{range $message := .Messages}}
+       
+            {{if eq $message.Id_topic_msg $test.TopicToOpen }} <!-- gerer topic ici-->
+            
+                             <div>
+                                  <ul id="list">
+                                      <div class="commentBox">
+                                         <div class="commentBoxHead">
+                                             <div class="commentBoxAvatar">
+                                                 <img src= "{{range $user := $.Utilisateurs}}
+                                                 {{if eq $user.Id_utilisateur $message.Id_utilisateur_msg}}
+                                                     {{$user.Avatar_utilisateur}}
+                                                     {{end}}
+                                                 {{end}}"
+                                                  alt="testimgnm" width="50" height="50" ></img>
+                                             </div>
+                                             <div class="commentBoxName">
+
+                                                {{range $user := $.Utilisateurs}}
+                                                {{if eq $user.Id_utilisateur $message.Id_utilisateur_msg}}
+                                                    <p>{{$user.Nom_utilisateur}}</p>
+                                                    {{end}}
+                                                    {{end}} 
+                                              
+                                             
+                                            </div>
+                                         </div>
+                                         <div class="commentBoxBody">
+                                             <h1comment> {{.Contenu_message}}</h1comment>
+                                         </div>
+                                         <div class="commentBoxBottom">
+                                            <iframe name="voltar" style="display:none;"></iframe> <!-- permet de ne pas recharger la page facilement-->
+                                            <div class="commentBoxUpVote" >
+                                                    <form action="/"  method="POST" >
+                                                    <button value="{{.Id_message}}+{{.Id_utilisateur_msg}}" input name="testlike"  class="btnUpVote"   >
+                                                                  
+                                                        {{ $starCreated := false }}
+                                                        {{ range $like := $.LikeNumbers }}
+                                                                {{range $user := $.Utilisateurs}}
+                                                                    {{if eq $user.Id_utilisateur $ty.IdConnect}} <!-- gere utilisateur ici-->
+                                                            
+                                                                        {{ if eq $like.Id_message_likeNumber $message.Id_message  }} 
+
+                                                                            <i class="material-icons"  style="color: rgba(194, 225, 16, 0.755);" >star</i>
+                                                                            {{ $starCreated = true }}
+                                                                        {{ end }}
+                                                                    {{end}}
+                                                                 {{ end }}
+                                                                {{end}}
+                                                        
+                                                        {{ if not $starCreated }}
+                                                            <i class="material-icons">star</i>
+                                                        {{ end }}
+
+                                                      
+                                                     
+
+                                                    </button>
+                                                     <input type="submit"   value= "{{.Likes_message}}" class="inputUpVote"  ></input>
+                                             </div> 
+                                             <div class="commentBoxDate">
+                                              {{.Date_message}}
+                                             </div>
+                                     </div>
+                                     </ul>
+                                     
+                            </div>
+
+                            {{end}}
+                            {{end}}
+                
+ 
+                    </div>
+               
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <script type="text/javascript" src="./static/Js/pageMenu.js"></script>
+
+ 
+
+</body>
+
+</html>

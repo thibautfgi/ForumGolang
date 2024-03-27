@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Forum - Connexion/Inscription</title>
+    <style>
+      /* Style pour le formulaire de connexion */
+      form {
+        margin: 20px auto;
+        width: 400px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+
+      /* Style pour le formulaire d'inscription */
+      form#register-form {
+        display: none;
+      }
+
+      /* Style pour les boutons de bascule entre les formulaires */
+      .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+      }
+
+      .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+      }
+
+      .tab button:hover {
+        background-color: #ddd;
+      }
+
+      .tab button.active {
+        background-color: #ccc;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Connexion/Inscription</h2>
+
+    <div class="tab">
+      <button class="tablinks active" onclick="openForm(event, 'login-form')">Connexion</button>
+      <button class="tablinks" onclick="openForm(event, 'register-form')">Inscription</button>
+    </div>
+
+    <form id="login-form" method="post">
+      <label for="username">Nom d'utilisateur</label>
+      <input type="text" name="username" required>
+
+      <label for="password">Mot de passe</label>
+      <input type="password" name="password" required>
+
+      <input type="submit" value="Se connecter">
+    </form>
+
+    <form id="register-form" method="post">
+      <label for="username">Nom d'utilisateur</label>
+      <input type="text" name="username" required>
+
+      <label for="email">Adresse e-mail</label>
+      <input type="email" name="email" required>
+
+      <label for="password">Mot de passe</label>
+      <input type="password" name="password" required>
+
+      <input type="submit" value="S'inscrire">
+    </form>
+
+    <script>
+      function openForm(evt, formName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      document.getElementById(formName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    </script>
+
+  </body>
+</html>
+

@@ -1,0 +1,71 @@
+
+.commentBoxTop {
+    width: 70%;
+    height: auto;
+    padding-bottom: 12%;
+    padding-top: 1.5%;
+
+}
+
+
+
+#inputBox {
+
+    position: relative;
+    height: 100%;
+    width: 80%;
+    border-radius: 4px;
+/* margin: 8px; */
+outline: none;
+/* padding: 8px; */
+border-style: 8px solid;
+box-sizing: border-box;
+transition: 0.3s;
+resize : none;
+overflow: scroll;
+float: left;
+}
+
+#inputBox:focus{
+border-color: blue;
+box-shadow: 0 0 8px 0 dodgerblue;
+}
+
+
+
+#inputBox::-webkit-scrollbar{
+    width: 0px;
+}
+
+
+.inputBoxSendBtn {
+    float: right;
+padding: 15px;
+background: blueviolet;
+color: aliceblue;
+font-size: 16px;
+font-family: 'Courier New', Courier, monospace;
+cursor: pointer;
+border: 0;
+outline: none;
+width: 10vh;
+margin: 1vh;
+margin-top: 1.5vh;
+border-radius: 30px;
+}
+
+.inputBoxSendBtn:focus, .inputBoxSendBtn:hover {
+
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+#YO {
+    background-color: black;
+}
+
+.hideinput {
+    display: none;
+}

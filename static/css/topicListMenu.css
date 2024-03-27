@@ -1,0 +1,87 @@
+*{
+    /* margin: 0; */
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+/* .body {
+    background-color: #e3edf7;
+} */
+
+.accordion {
+    width: 100%;
+    padding: 5vh;
+}
+  
+.accordion ul {
+    list-style: none;
+    width: 100%;
+    margin-bottom: 1.5%;
+    padding: 1%;
+    border-radius: 4vh;
+    background: linear-gradient(135deg,#00008B, #00FFFF ,#FF00FF);
+    box-shadow: 6px 6px 8px -1px rgba(0, 0, 0, 0.15);
+}
+  
+.accordion ul label {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #fff;
+}
+  
+  label::before {
+    content: "+";
+    margin-right: 1%;
+    font-size: 24px;
+    font-weight: 600;
+    transition: transform 0.3s;
+  }
+  
+  input[type="radio"] {
+    display: none;
+  }
+  
+.accordion .content {
+    color: #555;
+    padding: 0 5%;
+    line-height: 26px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s, padding 0.5s;
+}
+  
+  input[type="radio"]:hover + label + .content {
+    max-height: 33vh;
+    cursor: pointer;
+  }
+  
+.accordion .content:hover {
+    max-height: 33vh;
+    cursor: pointer;
+}
+  
+.accordion input[type="radio"]:hover + label::before  {
+    content: "-";
+    transform: rotate(45deg);
+}
+  
+.ok {
+    list-style: none;
+    width: 100%;
+    /* margin-bottom: 1.5%; */
+    padding: 1%;
+    border-radius: 4vh; 
+    background: linear-gradient(135deg, #00FFFF ,#FF00FF);
+  
+
+}
+  
+.listtopic {
+    width: 100%;
+    /* padding: 5vh; */
+}
+  
